@@ -16,6 +16,13 @@
     <Folder Include="wwwroot\Images\Products\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
   <Target Name="Tailwind" BeforeTargets="Build">
     <Exec Command="npm run css:build" />
   </Target>
