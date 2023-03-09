@@ -2,39 +2,37 @@
     ViewData["Title"] = "Login";
 }
 
-<main>
-	<div class="h-screen md:flex">
-		<div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
-			<div>
-				<h1 class="text-white font-bold text-4xl font-sans">GoFinance</h1>
-				<p class="text-white mt-1">The most popular peer to peer lending at SEA</p>
-				<button type="submit" class="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2">Read More</button>
-			</div>
-			<div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-			<div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-			<div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-			<div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-		</div>
-		<div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-			<form class="bg-white">
-				<h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
-				<p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
-				
-				<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-						 viewBox="0 0 24 24" stroke="currentColor">
-						</svg>
-					<input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Email Address" />
-				</div>
-				<div class="flex items-center border-2 py-2 px-3 rounded-2xl">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-						 fill="currentColor">
-						</svg>
-					<input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Password" />
-				</div>
-				<button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
-				<span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
-			</form>
-		</div>
-	</div>
+    <main class="bg-gray-50">
+        <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0">
+            <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                    Sign in to platform
+                </h2>
+                <form class="mt-8 space-y-6" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="name@company.com" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" name="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="remember" class="font-medium text-gray-600">Remember me</label>
+                        </div>
+                        <a href="#" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Forgot Password?</a>
+                    </div>
+                    <button class="bg-blue-600 hover:bg-blue-800 text-white font-semibold w-full py-3 rounded-lg ">
+                        Login
+                    </button>
+                    <div class="text-sm font-medium text-gray-500">
+                        Not registered? <a class="text-blue-700 hover:underline">Create account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
 </main>
