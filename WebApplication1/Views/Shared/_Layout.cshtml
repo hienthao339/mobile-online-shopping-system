@@ -60,25 +60,44 @@
         </script>
 </head>
 <body>
-    <header class="flex-col text-dark">
+    <header class="flex-col">
 		<nav id="navbar">
-			<nav class="relative px-4 py-3 flex justify-between items-center bg-white">
-				<a class="text-2xl font-bold leading-none" href="#">
+			<nav class="relative px-4 py-2 flex justify-between items-center bg-white">
+				<a class="text-xl font-extrabold leading-none fst-italic text-black" href="#">
 					W.REX
 				</a>
-                <a class="lg:inline-block py-[10px] p-2 hover:bg-dark rounded-xl transition duration-200 text-2xl"
-                href="#" onclick="openMenu()">≡</a>
+                <div class="flex gap-2">
+                    <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
+                       href="#"><i class="fa-solid fa-cart-shopping text-black"></i></a>
+                    <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
+                       href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass text-black px-3"></i></a>
+                    <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
+                       href="#" onclick="openMenu()"><i class="fa-solid fa-bars text-black"></i></a>
+                </div>
 			</nav>
 		</nav>
-        <nav class="w-25 h-100 text-center text-lg text-dark font-semibold hidden absolute top-0 right-0 py-10 bg-white flex flex-col text-decoration-none" 
-        id="menu-bar">
-            <a href="#" onclick="closeMenu()" class="text-dark">╳</a>
+        <nav class="h-screen text-center text-lg text-dark font-semibold hidden relative top-0 bg-white flex flex-col text-decoration-none z-10 text-center ease-in-out"
+             id="menu-bar">
+            <a href="#" onclick="closeMenu()" class="text-dark mb-lg-3">╳</a>
             @Html.ActionLink("HOME", "Index", "Home", null, new {@class="font-semibold mt-4"})
             @Html.ActionLink("ABOUT US", "About", "Home", null, new {@class="font-semibold mt-4"})
             @Html.ActionLink("EXPLORE", null, null, null, new {@class="font-semibold mt-4"})
             @Html.ActionLink("COMPARE", null, null, null, new {@class="font-semibold mt-4"})
-            @Html.ActionLink("CART", null, null, null, new {@class="font-semibold mt-4"})
             @Html.ActionLink("LOGIN", "Signin", "Home", null, new {@class="font-semibold mt-4"})
+        </nav>
+        <nav class="flex flex-col h-screen text-center text-lg text-dark font-semibold hidden relative top-0 bg-white text-decoration-none z-10 text-center ease-in-out"
+        id="search-bar">
+            <a href="#" onclick="closeSearch()" class="text-dark mb-lg-5">╳</a>
+            <div class="text-[48px] font-bold mb-[20px]">What are you searching for?</div>
+            <div class="font-light mb-[50px]">Let's join with us and enjoy your aesthetic new-born discovery.</div>
+                <div class="container flex justify-center items-center px-4 sm:px-6 lg:px-8">
+                    <div class="relative">
+                    <input type="text" class="h-14 w-96 pr-8 pl-5 rounded z-10 focus:shadow focus:outline-none border-0 border-bottom text-black" placeholder="Search">
+                        <div class="absolute top-4 right-3">
+                            <i class="fa fa-search text-gray-200 z-20 hover:text-gray-500 text-black"></i>
+                        </div>
+                    </div>
+                </div>
         </nav>
     </header>
 
@@ -127,7 +146,6 @@
             </ul>
         </div>
     </div>
-
     <footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023. All Rights Reserved.
@@ -148,21 +166,28 @@
         </ul>
     </footer>
 
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     <script>
         const menubar = document.getElementById('menu-bar');
-        const navbar = document.getElementById('navbar');
 
         function openMenu(){
             menubar.classList.remove('hidden');
-            menubar.classList.add('z-10');
         }
         function closeMenu(){
             menubar.classList.add('hidden');
-            menubar.classList.remove('z-10');
+        }
+    </script>
+    <script>
+        const searchbar = document.getElementById('search-bar');
+
+        function openSearch() {
+            searchbar.classList.remove('hidden');
+        }
+        function closeSearch() {
+            searchbar.classList.add('hidden');
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)
