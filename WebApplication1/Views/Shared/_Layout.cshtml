@@ -68,7 +68,7 @@
 				</a>
                 <div class="flex gap-2">
                     <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
-                       href="#"><i class="fa-solid fa-cart-shopping text-black"></i></a>
+                       href="#" onclick="openCart()"><i class="fa-solid fa-cart-shopping text-black"></i></a>
                     <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
                        href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass text-black px-3"></i></a>
                     <a class="lg:inline-block py-[10px] rounded-xl transition duration-200"
@@ -76,28 +76,133 @@
                 </div>
 			</nav>
 		</nav>
-        <nav class="h-screen text-center text-lg text-dark font-semibold hidden relative top-0 bg-white flex flex-col text-decoration-none z-10 text-center ease-in-out"
+        <nav class="h-screen font-semibold text-center text-lg hidden relative top-0 bg-white flex flex-col text-decoration-none z-10 text-center ease-in-out"
              id="menu-bar">
-            <a href="#" onclick="closeMenu()" class="text-dark mb-lg-3">╳</a>
-            @Html.ActionLink("HOME", "Index", "Home", null, new {@class="font-semibold mt-4"})
-            @Html.ActionLink("ABOUT US", "About", "Home", null, new {@class="font-semibold mt-4"})
-            @Html.ActionLink("EXPLORE", null, null, null, new {@class="font-semibold mt-4"})
-            @Html.ActionLink("COMPARE", null, null, null, new {@class="font-semibold mt-4"})
-            @Html.ActionLink("LOGIN", "Signin", "Home", null, new {@class="font-semibold mt-4"})
+            <a href="#" onclick="closeMenu()" class="text-dark mb-lg-3 text-lg">╳</a>
+            <div class="my-4 space-y-3 flex flex-col">
+                <a href="@Url.Action("Index", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">HOME</a>
+                <a href="@Url.Action("About", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">ABOUT</a>
+                <a href="@Url.Action("Product", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">EXPLORE</a>
+                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">COMPARE</a>
+                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">CHAT WITH US</a>
+                <a href="@Url.Action("Signin", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">SIGN IN</a>
+            </div>
         </nav>
         <nav class="flex flex-col h-screen text-center text-lg text-dark font-semibold hidden relative top-0 bg-white text-decoration-none z-10 text-center ease-in-out"
         id="search-bar">
             <a href="#" onclick="closeSearch()" class="text-dark mb-lg-5">╳</a>
             <div class="text-[48px] font-bold mb-[20px]">What are you searching for?</div>
             <div class="font-light mb-[50px]">Let's join with us and enjoy your aesthetic new-born discovery.</div>
-                <div class="container flex justify-center items-center px-4 sm:px-6 lg:px-8">
-                    <div class="relative">
-                    <input type="text" class="h-14 w-96 pr-8 pl-5 rounded z-10 focus:shadow focus:outline-none border-0 border-bottom text-black" placeholder="Search">
-                        <div class="absolute top-4 right-3">
-                            <i class="fa fa-search text-gray-200 z-20 hover:text-gray-500 text-black"></i>
+            <div class="container flex justify-center items-center px-4 sm:px-6 lg:px-8">
+                <div class="relative">
+                <input type="text" class="h-14 w-96 pr-8 pl-5 rounded z-10 focus:shadow focus:outline-none border-0 border-bottom text-gray-400" placeholder="Search">
+                    <div class="absolute top-4 right-3">
+                        <i class="fa fa-search text-gray-200 z-20 hover:text-gray-500 text-black"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="relative z-30 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true"
+        id="cart-bar">
+            <div class="fixed inset-0 bg-white-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed inset-0 overflow-hidden">
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                        <div class="pointer-events-auto w-screen max-w-md">
+                            <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                                <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+                                    <div class="flex items-start justify-between">
+                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+                                        <div class="ml-3 flex h-7 items-center">
+                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500 text-dark" onclick="closeCart()">
+                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-8">
+                                        <div class="flow-root">
+                                            <ul role="list" class="-my-6 divide-y divide-gray-200">
+                                                <li class="flex py-6">
+                                                    <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
+                                                    </div>
+
+                                                    <div class="ml-4 flex flex-1 flex-col">
+                                                        <div>
+                                                            <div class="flex justify-between text-base font-medium text-gray-900">
+                                                                <h3>
+                                                                    <a href="#">Throwback Hip Bag</a>
+                                                                </h3>
+                                                                <p class="ml-4">$90.00</p>
+                                                            </div>
+                                                            <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                                                        </div>
+                                                        <div class="flex flex-1 items-end justify-between text-sm">
+                                                            <p class="text-gray-500">Qty 1</p>
+
+                                                            <div class="flex">
+                                                                <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li class="flex py-6">
+                                                    <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
+                                                    </div>
+
+                                                    <div class="ml-4 flex flex-1 flex-col">
+                                                        <div>
+                                                            <div class="flex justify-between text-base font-medium text-gray-900">
+                                                                <h3>
+                                                                    <a href="#">Medium Stuff Satchel</a>
+                                                                </h3>
+                                                                <p class="ml-4">$32.00</p>
+                                                            </div>
+                                                            <p class="mt-1 text-sm text-gray-500">Blue</p>
+                                                        </div>
+                                                        <div class="flex flex-1 items-end justify-between text-sm">
+                                                            <p class="text-gray-500">Qty 1</p>
+
+                                                            <div class="flex">
+                                                                <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+                                    <div class="flex justify-between text-base font-medium text-gray-900">
+                                        <p>Subtotal</p>
+                                        <p>$262.00</p>
+                                    </div>
+                                    <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                                    <div class="mt-6">
+                                        <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                                    </div>
+                                    <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                                        <p>
+                                            or
+                                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-400 hover:font-extrabold">
+                                                Open Shopping Cart
+                                                <span aria-hidden="true"> &rarr;</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </nav>
     </header>
 
@@ -110,39 +215,42 @@
 
     <div class="p-[100px] flex flex-row justify-content-between">
         <div class="text-start">
-            <div class="text-lg font-semibold">ABC</div>
-            <ul class="list-unstyled">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
+            <div class="text-lg font-bold my-3">SHOP</div>
+            <ul class="list-unstyled space-y-2 font-light">
+                <li>Apple</li>
+                <li>Samsung</li>
+                <li>Huawei</li>
+                <li>Xiaomi</li>
+                <li>Google</li>
+                <li>Oppo</li>
             </ul>
         </div>
         <div class="text-start">
-            <div class="text-lg font-semibold">ABC</div>
-            <ul class="list-unstyled">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
+            <div class="text-lg font-bold my-3">SUPPORT</div>
+            <ul class="list-unstyled space-y-2 font-light">
+                <li>Product Support</li>
+                <li>Order Support</li>
+                <li>Account Support</li>
+                <li>Register For Admin</li>
+                <li>Community</li>
+                <li>Services</li>
             </ul>
         </div>
         <div class="text-start">
-            <div class="text-lg font-semibold">ABC</div>
-            <ul class="list-unstyled">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
+            <div class="text-lg font-bold my-3">SOCIAL</div>
+            <ul class="list-unstyled space-y-2 font-light">
+                <li>Twitter</li>
+                <li>Facebook</li>
+                <li>Instagram</li>
             </ul>
         </div>
         <div class="text-start">
-            <div class="text-lg font-semibold">ABC</div>
-            <ul class="list-unstyled">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-                <li>Item 4</li>
+            <div class="text-lg font-bold my-3">MEMBERS</div>
+            <ul class="list-unstyled space-y-2 font-light">
+                <li>Tran Hien Thao</li>
+                <li>Pham Thieu Chau</li>
+                <li>Nguyen Quang Nhat</li>
+                <li>Dang The Nghia</li>
             </ul>
         </div>
     </div>
@@ -188,6 +296,16 @@
         }
         function closeSearch() {
             searchbar.classList.add('hidden');
+        }
+    </script>
+    <script>
+        const cartbar = document.getElementById('cart-bar');
+
+        function openCart() {
+            cartbar.classList.remove('hidden');
+        }
+        function closeCart() {
+            cartbar.classList.add('hidden');
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)
