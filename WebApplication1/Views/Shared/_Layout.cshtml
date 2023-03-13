@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+
 
 </head>
 <body>
     <header class="flex-col">
+
+        @*icon-bar*@
 		<nav id="navbar">
 			<nav class="relative px-4 py-2 flex justify-between items-center bg-white">
 				<a class="text-xl font-extrabold leading-none fst-italic text-black" href="#">
@@ -31,18 +34,22 @@
                 </div>
 			</nav>
 		</nav>
+
+        @*menu-bar*@
         <nav class="h-screen font-semibold text-center text-lg hidden relative top-0 bg-white flex flex-col text-decoration-none z-10 text-center ease-in-out"
              id="menu-bar">
             <a href="#" onclick="closeMenu()" class="text-dark mb-lg-3 text-lg">╳</a>
             <div class="my-4 space-y-3 flex flex-col">
-                <a href="@Url.Action("Index", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">HOME</a>
-                <a href="@Url.Action("About", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">ABOUT</a>
-                <a href="@Url.Action("Product", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">EXPLORE</a>
-                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">COMPARE</a>
-                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">CHAT WITH US</a>
-                <a href="@Url.Action("Signin", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark">SIGN IN</a>
+                <a href="@Url.Action("Index", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">HOME</a>
+                <a href="@Url.Action("About", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">ABOUT</a>
+                <a href="@Url.Action("Product", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">EXPLORE</a>
+                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">COMPARE</a>
+                <a href="#" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">CHAT WITH US</a>
+                <a href="@Url.Action("Signin", "Home")" class="py-2 px-3 hover:font-extrabold hover:italic hover:text-blue-600 text-dark text-decoration-none">SIGN IN</a>
             </div>
         </nav>
+        
+        @*search-bar*@
         <nav class="flex flex-col h-screen text-center text-lg text-dark font-semibold hidden relative top-0 bg-white text-decoration-none z-10 text-center ease-in-out"
         id="search-bar">
             <a href="#" onclick="closeSearch()" class="text-dark mb-lg-5">╳</a>
@@ -57,6 +64,8 @@
                 </div>
             </div>
         </nav>
+        
+        @*cart-bar*@
         <nav class="relative z-30 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true"
         id="cart-bar">
             <div class="fixed inset-0 bg-white-500 bg-opacity-75 transition-opacity"></div>
